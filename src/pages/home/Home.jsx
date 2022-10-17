@@ -1,0 +1,15 @@
+import React from "react";
+import Sidebar from "./sidebar/Sidebar";
+
+export default function Home() {
+  return (
+    <>
+      <main className="min-h-screen flex max-w-[1500px] mx-auto">
+        <Sidebar />
+        {/* Feed */}
+        {/* Widgets */}
+        {/* Modal*/}
+      </main>
+    </>
+  );
+}
