@@ -5,25 +5,26 @@
 /* global styles in tailwind */
 @layer base {
   body {
-    @apply bg-black text-[#e5e5e5];
+    /* @apply bg-black text-[#e5e5e5]; */
+    @apply bg-[#e5e5e5];
     font-family: "Poppins", monospace;
     margin: 0%;
     box-sizing: border-box;
     --primary: #e5e5e5;
-    --orange: #ff3b30;
+    --purple: #7856ff;
   }
 }
 
 @layer components {
   .hoverAnimation {
-    @apply hover:bg-[#ff3b30] hover:bg-opacity-10 rounded-full cursor-pointer w-[52px] h-[52px] xl:w-auto xl:h-auto xl:py-3 xl:px-4 transition duration-200 ease-out;
+    @apply hover:bg-[#7856ff] hover:bg-opacity-10 rounded-full cursor-pointer w-[52px] h-[52px] xl:w-auto xl:h-auto xl:py-3 xl:px-4 transition duration-200 ease-out;
   }
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 button {
-  background-color: var(--orange);
+  background-color: var(--purple);
   border-radius: 0.2rem;
   color: var(--primary);
   border: none;
@@ -39,5 +40,5 @@ body::-webkit-scrollbar-track {
 }
 body::-webkit-scrollbar-thumb {
   border-radius: 1rem;
-  background-color: var(--orange);
+  background-color: var(--purple);
 }
