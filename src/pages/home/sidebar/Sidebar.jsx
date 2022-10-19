@@ -1,7 +1,6 @@
 import React from "react";
 import SidebarIcons from "./SidebarIcons";
 import {
-  BiHomeAlt,
   BiHash,
   BiBell,
   BiUser,
@@ -14,7 +13,8 @@ import ProfilePic from "../../../constants";
 
 export default function Sidebar() {
   return (
-    <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full">
+    <div className="hidden sm-[440px]:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full">
+      {/* // <div className="sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2  h-full"> */}
       <div className="flex items-center justify-center w-14 h-14 hoverAnimation p-0 xl:ml-24">
         <img width={40} height={40} src={logo} alt="twitter pic" />
       </div>
