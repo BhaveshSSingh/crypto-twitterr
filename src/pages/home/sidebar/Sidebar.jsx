@@ -8,7 +8,7 @@ import {
 } from "react-icons/bi";
 import { BsInbox, BsBookmarkPlus, BsClipboard } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
-import logo from "../../../assets/logo.png";
+import logo from "../../../assets/logo.svg";
 import ProfilePic from "../../../constants";
 
 export default function Sidebar() {

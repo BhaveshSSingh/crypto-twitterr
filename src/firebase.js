@@ -2,11 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAGL9aOCN7Uv-JRlAWToEIBcmmwKPpa4WE",
   authDomain: "crypto-twt.firebaseapp.com",
@@ -24,3 +21,7 @@ const storage = getStorage();
 
 export default app;
 export { db, storage };
+
+// auth
+export const auth = getAuth();
+export const provider = new GoogleAuthProvider();
