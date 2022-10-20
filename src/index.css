@@ -5,8 +5,8 @@
 /* global styles in tailwind */
 @layer base {
   body {
-    @apply bg-[#000000] text-[#e5e5e5];
-    /* @apply bg-[#e5e5e5]; */
+    /* @apply bg-[#000000] text-[#e5e5e5]; */
+    @apply bg-[#e5e5e5];
     font-family: "Poppins", monospace;
     margin: 0%;
     box-sizing: border-box;
@@ -28,8 +28,6 @@
 
 button {
   background-color: var(--purple);
-  border-radius: 0.2rem;
-  /* color: transparent; */
   border: none;
   cursor: pointer;
 }
@@ -38,9 +36,7 @@ button {
 body::-webkit-scrollbar {
   width: 0.3rem;
 }
-body::-webkit-scrollbar-track {
-  /* background: transparent; */
-}
+
 body::-webkit-scrollbar-thumb {
   border-radius: 0.5rem;
   background-color: var(--purple);

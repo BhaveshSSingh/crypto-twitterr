@@ -28,7 +28,7 @@ export default function Sidebar() {
         <SidebarIcons text="Pic" Icon={BiUser} />
         <SidebarIcons text="More" Icon={BiDotsHorizontalRounded} />
       </div>
-      <button className="hidden xl:inline ml-auto w-56 h-[52px] font-bold pd-20px rounded-full text-lg hover:bg-[#9e86ff]">
+      <button className="hidden xl:inline ml-auto w-56 h-[52px] font-bold pd-20px rounded-full text-lg hover:bg-[#9e86ff] text-white">
         Tweet
       </button>
       <div className="text flex items-center justify-center mt-auto hoverAnimation xl:ml-auto ">

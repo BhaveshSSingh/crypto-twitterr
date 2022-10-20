@@ -1,18 +1,68 @@
 import React, { useState, useRef } from "react";
 import ProfilePic from "../../../constants";
-import { MdOutlineCancel, MdAddPhotoAlternate } from "react-icons/md";
+import { MdClear, MdAddPhotoAlternate } from "react-icons/md";
 import { BsEmojiSmile } from "react-icons/bs";
 import "./Input.css";
-// import data from "@emoji-mart/data/sets/14/apple.json";
 import Picker from "@emoji-mart/react";
+// import { toast, ToastContainer } from "react-toastify";
+import {
+  addDoc,
+  collection,
+  doc,
+  updateDoc,
+  serverTimestamp,
+} from "@firebase/firestore";
+import { getDownloadURL, ref, uploadString } from "@firebase/storage";
+import { db, storage } from "../../../firebase";
 
 function Input() {
   const [input, setInput] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [addImageToPost, setAddImageToPost] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
   const [showEmojis, setShowEmojis] = useState(false);
   const filePickerRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
+  const sendPost = async () => {
+    setLoading(true);
+    // Create the Doc
+    const docRef = await addDoc(collection(db, "posts"), {
+      text: input,
+      time: serverTimestamp(),
+    });
+    const imageRef = ref(storage, `posts/${docRef.id}/image`);
+    // Update the Doc with img
+    if (selectedImage) {
+      await uploadString(imageRef, selectedImage, "data_url").then(async () => {
+        // DownLoad URL to use later
+        const downloadURL = await getDownloadURL(imageRef);
+        await updateDoc(doc(db, "posts", docRef.id), {
+          image: downloadURL,
+        });
+      });
+    }
+
+    // Reset the states
+    setLoading(false);
+    setInput("");
+    setSelectedImage(null);
+    setShowEmojis(false);
+  };
+
+  // Adds Image to the screen from file (nothing to do with firebase)
+  const addImageToPost = (e) => {
+    // FileReader async reads the raw data of the file
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      // reads the selected blob and then shows it with .results
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    reader.onload = (readerEvent) => {
+      // shows it with.results
+      setSelectedImage(readerEvent.target.result);
+    };
+  };
+
+  // Adds emoji to the input with the texts
   const addEmoji = (e) => {
     let sym = e.unified.split("-");
     let codesArray = [];
@@ -20,69 +70,81 @@ function Input() {
     let emoji = String.fromCodePoint(...codesArray);
     setInput(input + emoji);
   };
-  console.log(input);
 
   return (
     <div
-      className={`border-b border-purple-300 p-3 flex space-x-3 overflow-y-scroll scrollbar-hide`}
+      className={`border-b border-purple-300 p-3 flex space-x-3 overflow-y-scroll scrollbar-hide ${
+        loading && "opacity-60"
+      }`}
     >
       <span className="cursor-pointer">
         <ProfilePic />
       </span>
 
       <div className="w-full divide-y divide-purple-400">
-        <div className={``}>
+        <div className={`${selectedImage && "pb-7"} ${input && "space-y-2.5"}`}>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="What's happening?"
             rows="2"
-            className="bg-transparent outline-none text-lg text-gray-200 placeholder-gray-400 w-full"
+            className="bg-transparent outline-none text-lg 
+             placeholder-gray-500 w-full"
           />
 
-          {selectedFile && (
+          {selectedImage && (
             <div className="relative">
               <span
                 className="absolute w-8 h-8 bg-[#15181c] hover:bg-[#272c26] bg-opacity-75 rounded-full flex items-center justify-center top-1 left-1 cursor-pointer"
-                onClick={() => setSelectedFile(null)}
+                onClick={() => setSelectedImage(null)}
               >
-                <MdOutlineCancel className="text-white h-5" />
+                <MdClear size={22} className="text-white" />
               </span>
               <img
-                src={selectedFile}
+                src={selectedImage}
                 alt=""
                 className="rounded-2xl max-h-80 object-contain"
               />
             </div>
           )}
         </div>
+        {!loading && (
+          <>
+            <div className="flex items-center justify-between pt-2.5 text-purple-600">
+              <div className="flex items-center">
+                <div
+                  className="icon"
+                  onClick={() => filePickerRef.current.click()}
+                >
+                  <MdAddPhotoAlternate size={28} />
+                  <input
+                    type="file"
+                    hidden
+                    onChange={addImageToPost}
+                    ref={filePickerRef}
+                  />
+                </div>
 
-        <div className="flex items-center justify-between pt-2.5 text-purple-600">
-          <div className="flex items-center">
-            <div className="icon" onClick={() => filePickerRef.current.click()}>
-              <MdAddPhotoAlternate size={28} />
-              <input
-                type="file"
-                hidden
-                onChange={addImageToPost}
-                ref={filePickerRef}
-              />
+                <div
+                  className="icon"
+                  onClick={() => setShowEmojis(!showEmojis)}
+                >
+                  <BsEmojiSmile size={22} />
+                </div>
+
+                {showEmojis && <Picker onEmojiSelect={addEmoji} />}
+              </div>
+              <button
+                className="cursor-pointer   bg-[#7856ff] text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-[#ab97fb] disabled:hover:bg-[#7856ff] disabled:opacity-50 disabled:cursor-default "
+                disabled={!input.trim() && !selectedImage}
+                onClick={sendPost}
+              >
+                Tweet
+              </button>
             </div>
-
-            <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
-              <BsEmojiSmile size={22} />
-            </div>
-
-            {showEmojis && <Picker onEmojiSelect={addEmoji} />}
-          </div>
-          <button
-            className=" text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-[#a28bff]   cursor-pointer opacity-70"
-            disabled={!input && !selectedFile}
-            // onClick={sendPost}
-          >
-            Tweet
-          </button>
-        </div>
+            {/* <ToastContainer /> */}
+          </>
+        )}
       </div>
     </div>
   );

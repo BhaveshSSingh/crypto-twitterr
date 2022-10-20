@@ -1,6 +1,8 @@
 import React from "react";
 import { HiOutlineSparkles } from "react-icons/hi";
 import Input from "./Input";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Feed() {
   return (
