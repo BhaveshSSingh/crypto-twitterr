@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signOut } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAGL9aOCN7Uv-JRlAWToEIBcmmwKPpa4WE",
@@ -25,3 +25,13 @@ export { db, storage };
 // auth
 export const auth = getAuth();
 export const provider = new GoogleAuthProvider();
+
+export const logout = () => {
+  signOut(auth)
+    .then(() => {
+      console.log("User Logged Out");
+    })
+    .catch((err) => {
+      alert(err.message);
+    });
+};
