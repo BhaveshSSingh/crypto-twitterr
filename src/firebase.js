@@ -5,13 +5,13 @@ import { getStorage } from "firebase/storage";
 import { getAuth, GoogleAuthProvider, signOut } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAGL9aOCN7Uv-JRlAWToEIBcmmwKPpa4WE",
-  authDomain: "crypto-twt.firebaseapp.com",
-  projectId: "crypto-twt",
-  storageBucket: "crypto-twt.appspot.com",
-  messagingSenderId: "383242689960",
-  appId: "1:383242689960:web:9bcb7f51f39501b24ed19d",
-  measurementId: "G-T26P62F26L",
+  apiKey: "AIzaSyBq99abOyeKSTL3P-GUHJe72jx3RR88gS4",
+  authDomain: "cryptoo-bros.firebaseapp.com",
+  projectId: "cryptoo-bros",
+  storageBucket: "cryptoo-bros.appspot.com",
+  messagingSenderId: "1030176149799",
+  appId: "1:1030176149799:web:1a12d5cbe7b332ddff1902",
+  measurementId: "G-26RGS9PEGG",
 };
 
 // Initialize Firebase
@@ -24,6 +24,7 @@ export { db, storage };
 
 // auth
 export const auth = getAuth();
+
 export const provider = new GoogleAuthProvider();
 
 export const logout = () => {

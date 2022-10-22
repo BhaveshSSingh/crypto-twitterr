@@ -1,10 +1,8 @@
 import React, { useState, useRef } from "react";
-import ProfilePic from "../../../constants";
 import { MdClear, MdAddPhotoAlternate } from "react-icons/md";
 import { BsEmojiSmile } from "react-icons/bs";
 import "./Input.css";
 import Picker from "@emoji-mart/react";
-// import { toast, ToastContainer } from "react-toastify";
 import {
   addDoc,
   collection,
@@ -14,8 +12,9 @@ import {
 } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import { db, storage } from "../../../firebase";
+import ProfilePic from "../../../constants";
 
-function Input() {
+function Input({ user }) {
   const [input, setInput] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [showEmojis, setShowEmojis] = useState(false);
@@ -23,9 +22,13 @@ function Input() {
   const [loading, setLoading] = useState(false);
 
   const sendPost = async () => {
+    if (loading) return;
     setLoading(true);
     // Create the Doc
     const docRef = await addDoc(collection(db, "posts"), {
+      // id: user.uid,
+      // username: user.displayName,
+      // userImg: user.photoURL,
       text: input,
       time: serverTimestamp(),
     });
@@ -48,16 +51,12 @@ function Input() {
     setShowEmojis(false);
   };
 
-  // Adds Image to the screen from file (nothing to do with firebase)
   const addImageToPost = (e) => {
-    // FileReader async reads the raw data of the file
     const reader = new FileReader();
     if (e.target.files[0]) {
-      // reads the selected blob and then shows it with .results
       reader.readAsDataURL(e.target.files[0]);
     }
     reader.onload = (readerEvent) => {
-      // shows it with.results
       setSelectedImage(readerEvent.target.result);
     };
   };

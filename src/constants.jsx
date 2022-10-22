@@ -1,12 +1,14 @@
-const seed = Math.round(Math.random() * 100);
-export const SRC = `https://avatars.dicebear.com/api/bottts/${seed}.svg`;
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
 
-export default function ProfilePic({}) {
+export default function ProfilePic() {
+  const [user] = useAuthState(auth);
+
   return (
     <div>
       <img
         className="h-12 w-12 rounded-full xl:mr-2.5   border border-purple-400"
-        src={SRC}
+        src={user.photoURL}
         alt="profile pic"
       ></img>
     </div>

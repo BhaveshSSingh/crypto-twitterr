@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 function App() {
   const [user] = useAuthState(auth);
-
+  // console.log(user);
   return (
     <>
       {/* <Routes> */}
@@ -17,7 +17,7 @@ function App() {
       {/* )} */}
       {/* </Routes> */}
 
-      {user ? <Home /> : <Login />}
+      {user ? <Home user={user} /> : <Login />}
     </>
   );
 }

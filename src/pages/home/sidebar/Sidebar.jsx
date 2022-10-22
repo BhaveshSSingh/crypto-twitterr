@@ -5,15 +5,11 @@ import { BsInbox, BsBookmarkPlus, BsClipboard } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import logo from "../../../assets/logo.svg";
 import ProfilePic from "../../../constants";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logout } from "../../../firebase";
+import { logout } from "../../../firebase";
 
-export default function Sidebar({}) {
-  const [user] = useAuthState(auth);
-
+export default function Sidebar({ user }) {
   return (
     <div className="hidden sm-[440px]:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full">
-      {/* // <div className="sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2  h-full"> */}
       <div className="flex items-center justify-center w-14 h-14 hoverAnimation p-0 xl:ml-24">
         <img width={40} height={40} src={logo} alt="twitter pic" />
       </div>
@@ -25,17 +21,20 @@ export default function Sidebar({}) {
         <SidebarIcons text="Bookmarks" Icon={BsBookmarkPlus} />
         <SidebarIcons text="Lists" Icon={BsClipboard} />
         <SidebarIcons text="Pic" Icon={BiUser} />
-        {/* <SidebarIcons text="More" Icon={BiDotsHorizontalRounded} /> */}
       </div>
       <button className="hidden xl:inline ml-auto w-56 h-[52px] font-bold pd-20px rounded-full text-lg hover:bg-[#9e86ff] text-white">
         Tweet
       </button>
       <div className="text flex items-center justify-center mt-auto hoverAnimation xl:ml-auto ">
-        {/* Dice bear from contansts */}
         <ProfilePic />
-        <div className="hidden xl:inline leading-5">
+        {/* <img
+          className="h-12 w-12 rounded-full xl:mr-2.5   border border-purple-400"
+          src={user.photoURL}
+          alt="profile pi"
+        ></img> */}
+        <div className="hidden xl:inline leading-5 ">
           <h4 className="font-bold">{user.displayName.substring(0, 8)}</h4>
-          <p className="text-[gray]">@{user.displayName.substring(0, 8)}</p>
+          <p className="text-[gray]">@{user.uid.substring(0, 5)}</p>
         </div>
         <BiLogOut
           size={22}
