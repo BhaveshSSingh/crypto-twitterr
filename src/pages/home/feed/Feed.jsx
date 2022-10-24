@@ -10,9 +10,10 @@ export default function Feed({ user }) {
   const [posts, setPosts] = useState([]);
 
   // Retreving the posts
+
   // useEffect(() => {
   //   const unsubscribe = onSnapshot(
-  //     query(collection(db, "tweets"), orderBy("timestamp", "desc")),
+  //     query(collection(db, "posts"), orderBy("timestamp", "desc")),
   //     (snapshot) => {
   //       setPosts(snapshot.docs);
   //       console.log("useEffect");
@@ -24,22 +25,25 @@ export default function Feed({ user }) {
   // }, [db]);
 
   // CLEAN
+
   useEffect(
     () =>
-      onSnapshot(
-        query(collection(db, "posts"), orderBy("timestamp", "desc")),
-        (snapshot) => {
-          setPosts(snapshot.docs);
-        }
-      ),
+      onSnapshot(collection(db, "posts"), (snapshot) => {
+        setPosts(snapshot.docs);
+        console.log(snapshot.docs);
+      }),
     [db]
   );
   return (
     <div className="flex-grow border-l border-r  border-purple-300 max-w-2xl sm:ml-[73px] xl:ml-[370px]">
-      <div className="bg-[#e5e5e5] opacity-90 flex items-center sm:justify-between py-2 px-3 sticky top-0 z-50 border-b border-purple-300">
+      <div
+        className="
+      bg-black opacity-[0.97]
+       flex items-center sm:justify-between py-2 px-3 sticky top-0 z-50 border-b border-purple-300"
+      >
         <h2 className="text-lg sm:text-xl font-bold ">Home</h2>
         <button
-          className=" flex items-center justify-center  ml-auto text-white p-2 rounded "
+          className=" flex items-center justify-center  ml-auto text-white rounded p-1 mr-1"
           onClick={logout}
         >
           Logout <BiLogOut className="m-1" />

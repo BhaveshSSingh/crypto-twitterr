@@ -9,7 +9,7 @@ export default function Home({ user }) {
       <main className="min-h-screen flex max-w-[1500px] mx-auto">
         <Sidebar user={user} />
         <Feed user={user} />
-        {/* <Widgets /> */}
+        <Widgets />
         {/* Modal*/}
       </main>
     </>

@@ -5,13 +5,15 @@
 /* global styles in tailwind */
 @layer base {
   body {
-    /* @apply bg-[#000000] text-[#e5e5e5]; */
-    @apply bg-[#e5e5e5];
+    @apply bg-[#000000] text-[#e5e5e5];
+    /* @apply bg-[#e5e5e5]; */
     font-family: "Poppins", monospace;
     margin: 0%;
     box-sizing: border-box;
     --primary: #e5e5e5;
     --purple: #7856ff;
+    /* --purple: #ff3b30; */
+    /* --orange: #ff3b30; */
   }
 }
 
@@ -21,6 +23,9 @@
   }
   .icon {
     @apply cursor-pointer w-9 h-9 hover:bg-[#7856ff] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out;
+  }
+  .tag {
+    @apply text-[#7856ff] font-normal hover:underline cursor-pointer;
   }
 }
 

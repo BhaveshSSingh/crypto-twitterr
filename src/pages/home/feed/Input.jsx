@@ -26,9 +26,10 @@ function Input({ user }) {
     setLoading(true);
     // Create the Doc
     const docRef = await addDoc(collection(db, "posts"), {
-      // id: user.uid,
-      // username: user.displayName,
-      // userImg: user.photoURL,
+      id: user.uid,
+      tag: user.uid.substring(0, 5),
+      username: user.displayName,
+      userImg: user.photoURL,
       text: input,
       time: serverTimestamp(),
     });
