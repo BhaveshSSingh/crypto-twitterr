@@ -7,8 +7,16 @@ import {
   AiOutlineRetweet,
   AiOutlineDelete,
 } from "react-icons/ai";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 function Post({ id, post, postPage }) {
+  // const likePost = async () => {
+  //   if (liked) {
+  //     await deleteDoc(doc(db,"posts"))
+  //   }
+  // }
+
   return (
     <div className="p-3 flex cursor-pointer border-b border-gray-700">
       {!postPage && (

@@ -35,11 +35,11 @@ export default function Feed({ user }) {
     [db]
   );
   return (
-    <div className="flex-grow border-l border-r  border-purple-300 max-w-2xl sm:ml-[73px] xl:ml-[370px]">
+    <div className="flex-grow border-l border-r  border-gray-700 max-w-2xl sm:ml-[73px] xl:ml-[370px]">
       <div
         className="
       bg-black opacity-[0.97]
-       flex items-center sm:justify-between py-2 px-3 sticky top-0 z-50 border-b border-purple-300"
+       flex items-center sm:justify-between py-2 px-3 sticky top-0 z-50 border-b border-gray-700"
       >
         <h2 className="text-lg sm:text-xl font-bold ">Home</h2>
         <button

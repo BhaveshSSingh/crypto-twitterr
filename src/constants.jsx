@@ -7,7 +7,7 @@ export default function ProfilePic() {
   return (
     <div>
       <img
-        className="h-12 w-12 rounded-full xl:mr-2.5   border border-purple-400"
+        className="h-12 w-12 rounded-full xl:mr-2.5   "
         src={user.photoURL}
         alt="profile pic"
       ></img>
