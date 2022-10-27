@@ -15,7 +15,7 @@ export default function Login() {
         <img src={logo} alt="logo" />
       </div>
       <button
-        className="w-80 h-10 font-extrabold hover:bg-black hover:text-purple-500 rounded-lg"
+        className="w-80 h-10 font-extrabold hover:bg-gray-800 hover:text-purple-500 rounded-lg"
         onClick={signInUser}
       >
         Sign in

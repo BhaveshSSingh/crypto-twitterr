@@ -1,13 +1,17 @@
 import React from "react";
 import SidebarIcons from "./SidebarIcons";
 import { BiHash, BiBell, BiUser, BiLogOut } from "react-icons/bi";
-import { BsInbox, BsBookmarkPlus, BsClipboard } from "react-icons/bs";
+import { BsMessenger, BsBookmarkPlus, BsClipboard } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import logo from "../../../assets/logo.svg";
 import ProfilePic from "../../../constants";
 import { logout } from "../../../firebase";
 
 export default function Sidebar({ user }) {
+  function onClick() {
+    console.log("onCLicked");
+    window.open("https://discord-clone-baa20.firebaseapp.com/", "_blank");
+  }
   return (
     <div className="hidden sm-[440px]:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full">
       <div className="flex items-center justify-center w-14 h-14 hoverAnimation p-0 xl:ml-24">
@@ -17,7 +21,15 @@ export default function Sidebar({ user }) {
         <SidebarIcons text="Home" Icon={AiFillHome} active />
         <SidebarIcons text="Explore" Icon={BiHash} />
         <SidebarIcons text="Notifications" Icon={BiBell} />
-        <SidebarIcons text="Messages" Icon={BsInbox} />
+        <a
+          className="space-x-3 text-purple-500"
+          href="https://discord-clone-baa20.firebaseapp.com/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <SidebarIcons text="Discord Clone" Icon={BsMessenger} />
+        </a>
+
         <SidebarIcons text="Bookmarks" Icon={BsBookmarkPlus} />
         <SidebarIcons text="Lists" Icon={BsClipboard} />
         <SidebarIcons text="Pic" Icon={BiUser} />

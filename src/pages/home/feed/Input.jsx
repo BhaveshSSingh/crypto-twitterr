@@ -27,9 +27,9 @@ function Input({ user }) {
     // Create the Doc
     const docRef = await addDoc(collection(db, "posts"), {
       id: user.uid,
-      tag: user.uid.substring(0, 5),
       username: user.displayName,
       userImg: user.photoURL,
+      tag: user.uid.substring(0, 5),
       text: input,
       time: serverTimestamp(),
     });

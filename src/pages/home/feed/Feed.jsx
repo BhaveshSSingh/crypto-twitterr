@@ -11,35 +11,24 @@ export default function Feed({ user }) {
 
   // Retreving the posts
 
-  // useEffect(() => {
-  //   const unsubscribe = onSnapshot(
-  //     query(collection(db, "posts"), orderBy("timestamp", "desc")),
-  //     (snapshot) => {
-  //       setPosts(snapshot.docs);
-  //       console.log("useEffect");
-  //     }
-  //   );
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, [db]);
-
-  // CLEAN
-
-  useEffect(
-    () =>
-      onSnapshot(collection(db, "posts"), (snapshot) => {
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      query(collection(db, "posts"), orderBy("time", "desc")),
+      (snapshot) => {
         setPosts(snapshot.docs);
-        console.log(snapshot.docs);
-      }),
-    [db]
-  );
+        console.log("useEffect");
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, [db]);
   return (
     <div className="flex-grow border-l border-r  border-gray-700 max-w-2xl sm:ml-[73px] xl:ml-[370px]">
       <div
         className="
       bg-black opacity-[0.97]
-       flex items-center sm:justify-between py-2 px-3 sticky top-0 z-50 border-b border-gray-700"
+       flex items-center sm:justify-between py-2 px-3 sticky top-0  border-b border-gray-700"
       >
         <h2 className="text-lg sm:text-xl font-bold ">Home</h2>
         <button
@@ -53,7 +42,7 @@ export default function Feed({ user }) {
       {/*Showing  posts */}
       <div className="pb-72">
         {posts.map((post) => (
-          <Post key={post.id} id={post.id} post={post.data()} />
+          <Post key={post.id} id={post.id} user={user} post={post.data()} />
         ))}
       </div>
     </div>
