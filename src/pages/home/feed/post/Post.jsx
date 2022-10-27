@@ -1,72 +1,16 @@
+import { Like } from "./Like";
 import React from "react";
 import { BsThreeDots } from "react-icons/bs";
-import {
-  AiOutlineComment,
-  AiFillHeart,
-  AiOutlineHeart,
-  AiOutlineRetweet,
-  AiOutlineDelete,
-} from "react-icons/ai";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  setDoc,
-} from "firebase/firestore";
-import { db } from "../../../firebase";
+import { AiOutlineComment } from "react-icons/ai";
 import Moment from "react-moment";
 import { useState } from "react";
-import { useEffect } from "react";
-import Modal from "../../../modal/Modal";
+import Modal from "../../../../modal/Modal";
 import { MdClose } from "react-icons/md";
+import DeleteRetweet from "./DeleteRetweet";
 
 function Post({ id, post, postPage, user }) {
   const [showModal, setShowModal] = useState(false);
 
-  const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState([]);
-
-  // Likes section
-  useEffect(
-    () =>
-      onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
-        setLikes(snapshot.docs)
-      ),
-    [db, id]
-  );
-  useEffect(
-    () => setLiked(likes.findIndex((like) => like.id === user?.uid) !== -1),
-    [likes]
-  );
-
-  const likePost = async () => {
-    console.log("like clicked");
-    if (liked) {
-      await deleteDoc(doc(db, "posts", id, "likes", user.uid));
-    } else {
-      await setDoc(doc(db, "posts", id, "likes", user.uid), {
-        username: user.displayName,
-      });
-    }
-  };
-
-  // Delete your own posts (Delete btn)
-  const deleteHandler = () => {
-    console.log("delete clicked");
-    deleteDoc(doc(db, "posts", id));
-  };
-  // Copy to clipboard (RwTweet btn)
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(
-        "https://cryptoo-bros.firebaseapp.com/"
-      );
-    } catch (e) {
-      console.error("e", e);
-    }
-    alert("Copied to Clipboard");
-  };
   return (
     <div className="p-3 flex cursor-pointer border-b border-gray-700">
       {!postPage && (
@@ -132,33 +76,9 @@ function Post({ id, post, postPage, user }) {
           }`}
         >
           {/* Like component */}
-          {
-            <div
-              className="flex items-center space-x-1 group"
-              onClick={likePost}
-            >
-              <div className="icon group-hover:bg-pink-600/10 ">
-                {liked ? (
-                  <AiFillHeart size={22} className="text-pink-500" />
-                ) : (
-                  <AiOutlineHeart
-                    size={22}
-                    className={` hover:text-pink-500  `}
-                  />
-                )}
-              </div>
-              {likes.length > 0 && (
-                <span
-                  className={`group-hover:text-pink-600 text-sm ${
-                    liked && "text-pink-600"
-                  }`}
-                >
-                  {likes.length}
-                </span>
-              )}
-            </div>
-          }
-
+          {<Like id={id} user={user} />}
+          {/* Delete */}
+          <DeleteRetweet id={id} user={user} post={post} />
           {/* Comment */}
 
           <div
@@ -217,24 +137,6 @@ function Post({ id, post, postPage, user }) {
               </div>
             </div>
           </Modal>
-
-          {/* Delete */}
-          {user.uid === post.id ? (
-            <div className="icon group-hover:bg-red-500 group-hover:bg-opacity-10 ">
-              <AiOutlineDelete
-                size={22}
-                className="hover:text-red-500"
-                onClick={deleteHandler}
-              />
-            </div>
-          ) : (
-            <div
-              className="icon group-hover:bg-purple-500 group-hover:bg-opacity-10 "
-              onClick={copyToClipboard}
-            >
-              <AiOutlineRetweet size={22} className=" hover:text-purple-500" />
-            </div>
-          )}
         </div>
       </div>
     </div>

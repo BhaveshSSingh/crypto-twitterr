@@ -4,7 +4,7 @@ import Input from "./Input";
 import "react-toastify/dist/ReactToastify.css";
 import { db, logout } from "../../../firebase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import Post from "./Post";
+import Post from "./post/Post";
 
 export default function Feed({ user }) {
   const [posts, setPosts] = useState([]);
