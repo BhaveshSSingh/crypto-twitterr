@@ -5,7 +5,7 @@ import Trending from "./Trending";
 export default function Widgets({}) {
   return (
     <div className="hidden lg:inline ml-8 xl:w-[450px] py-1 space-y-5">
-      <div className="sticky top-0 py-1.5 bg-black -z-10  w-11/12 xl:w-9/12">
+      <div className="sticky top-0 py-1.5 bg-transparent   w-11/12 xl:w-9/12">
         <div className="bg-[#202327] flex items-center p-3  relative rounded-full ">
           <BiSearch size={20} className=" h-5  rounded-full" />
           <input

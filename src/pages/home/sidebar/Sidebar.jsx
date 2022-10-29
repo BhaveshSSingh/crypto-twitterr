@@ -1,7 +1,8 @@
 import React from "react";
 import SidebarIcons from "./SidebarIcons";
 import { BiHash, BiBell, BiUser, BiLogOut } from "react-icons/bi";
-import { BsMessenger, BsBookmarkPlus, BsClipboard } from "react-icons/bs";
+import { BsBookmarkPlus, BsClipboard } from "react-icons/bs";
+import { FaDiscord } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
 import logo from "../../../assets/logo.svg";
 import ProfilePic from "../../../constants";
@@ -27,7 +28,7 @@ export default function Sidebar({ user }) {
           target="_blank"
           rel="noreferrer"
         >
-          <SidebarIcons text="Discord Clone" Icon={BsMessenger} />
+          <SidebarIcons text="Discord Clone" Icon={FaDiscord} />
         </a>
 
         <SidebarIcons text="Bookmarks" Icon={BsBookmarkPlus} />
