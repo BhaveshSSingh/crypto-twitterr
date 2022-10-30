@@ -3,10 +3,18 @@ import { BsThreeDots } from "react-icons/bs";
 import Moment from "react-moment";
 import DeleteRetweet from "./DeleteRetweet";
 import { Comment } from "./Comment";
+import { useNavigate } from "react-router-dom";
 
 function Post({ id, post, postPage, user }) {
+  const navigate = useNavigate();
+  function navigatonHandler() {
+    navigate(`/post/${post.id}`);
+  }
   return (
-    <div className="p-3 flex cursor-pointer border-b border-gray-700">
+    <div
+      className="p-3 flex cursor-pointer border-b border-gray-700"
+      onClick={navigatonHandler}
+    >
       {!postPage && (
         <img
           src={

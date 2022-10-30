@@ -1,6 +1,6 @@
 import React from "react";
-import { Routes } from "react-router-dom";
-import Modal from "../../Modal";
+import { Routes, Route, Outlet } from "react-router-dom";
+import PostPage from "../PostPage";
 import Feed from "./feed/Feed";
 import Sidebar from "./sidebar/Sidebar";
 import Widgets from "./Widgets";
@@ -12,9 +12,10 @@ export default function Home({ user }) {
         <Sidebar user={user} />
         <Feed user={user} />
         <Widgets />
-        {/* Implememtn after dealing with redux or recoil */}
-        {/* <Modal user={user} /> */}
       </main>
+      <Routes>
+        <Route path="/post/:id" element={<PostPage />} />
+      </Routes>
     </>
   );
 }
