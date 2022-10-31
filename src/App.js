@@ -8,7 +8,7 @@ import PostPage from "./pages/PostPage";
 function App() {
   const [user] = useAuthState(auth);
   console.log(user);
-  console.log(user.photoURL);
+  // console.log(user.photoURL);
   return (
     <>
       {user ? (

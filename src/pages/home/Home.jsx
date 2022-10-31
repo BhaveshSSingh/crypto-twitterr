@@ -10,12 +10,12 @@ export default function Home({ user }) {
     <>
       <main className="min-h-screen flex max-w-[1500px] mx-auto">
         <Sidebar user={user} />
-        <Feed user={user} />
+        <Feed user={user} className="w-[800px]" />
         <Widgets />
       </main>
-      <Routes>
-        <Route path="/post/:id" element={<PostPage />} />
-      </Routes>
+      {/* <Routes>
+        <Route path="post/:id" element={<PostPage />} />
+      </Routes> */}
     </>
   );
 }

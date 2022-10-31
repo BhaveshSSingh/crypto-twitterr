@@ -2,23 +2,40 @@ import React from "react";
 import SidebarIcons from "./SidebarIcons";
 import { BiHash, BiUser, BiLogOut } from "react-icons/bi";
 import { BsBookmarkPlus } from "react-icons/bs";
+import { GiQuill } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
 import logo from "../../../assets/logo.svg";
 import ProfilePic from "../../../constants";
 import { logout } from "../../../firebase";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Sidebar({ user }) {
+  const navigate = useNavigate();
+  function navigateExplore() {
+    navigate(`/explore`);
+  }
   return (
     <div className="hidden sm-[440px]:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full">
       <div className="flex items-center justify-center w-14 h-14 hoverAnimation p-0 xl:ml-24">
         <img width={40} height={40} src={logo} alt="twitter pic" />
       </div>
       <div className="space-y-2.5 mt-4 mb-2.5 xl:ml-24 m:-5">
-        <SidebarIcons text="Home" Icon={AiFillHome} active />
-        <SidebarIcons text="Explore" Icon={BiHash} />
-        <SidebarIcons text="Bookmarks" Icon={BsBookmarkPlus} />
-        <SidebarIcons text="Find People" Icon={BiUser} />
+        <Link to="/">
+          <SidebarIcons text="Home" Icon={AiFillHome} active />
+        </Link>
+        <Link to="/explore" onClick={navigateExplore}>
+          <SidebarIcons text="Explore" Icon={BiHash} />
+        </Link>
+        <Link to="/bookmarks">
+          {" "}
+          <SidebarIcons text="Bookmarks" Icon={BsBookmarkPlus} />
+        </Link>
+        <Link to="people">
+          {" "}
+          <SidebarIcons text="Find People" Icon={BiUser} />
+        </Link>
+
         <a
           className="text-purple-500"
           href="https://discord-clone-baa20.firebaseapp.com/"
@@ -33,7 +50,7 @@ export default function Sidebar({ user }) {
         </a>
       </div>
       <button className="hidden xl:inline ml-auto w-56 h-[52px] font-bold pd-20px rounded-full text-lg hover:bg-[#9e86ff] text-white">
-        Tweet
+        <div>Tweet</div>
       </button>
       <div className="text flex items-center justify-center mt-auto hoverAnimation xl:ml-auto ">
         <ProfilePic />

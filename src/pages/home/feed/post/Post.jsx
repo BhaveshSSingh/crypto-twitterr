@@ -4,17 +4,17 @@ import Moment from "react-moment";
 import DeleteRetweet from "./DeleteRetweet";
 import { Comment } from "./Comment";
 import { useNavigate } from "react-router-dom";
+import PostPage from "../../../PostPage";
 
 function Post({ id, post, postPage, user }) {
   const navigate = useNavigate();
-  function navigatonHandler() {
-    navigate(`/post/${post.id}`);
+
+  function redirectPage() {
+    navigate(`/post/${id}`);
   }
+
   return (
-    <div
-      className="p-3 flex cursor-pointer border-b border-gray-700"
-      onClick={navigatonHandler}
-    >
+    <div className="p-3 flex cursor-pointer border-b border-gray-700">
       {!postPage && (
         <img
           src={
@@ -27,7 +27,10 @@ function Post({ id, post, postPage, user }) {
         />
       )}
       <div className="flex flex-col space-y-2 w-full">
-        <div className={`flex ${!postPage && "justify-between"}`}>
+        <div
+          className={`flex ${!postPage && "justify-between"}`}
+          onClick={redirectPage}
+        >
           {postPage && (
             <img
               src={post?.userImg}
@@ -65,12 +68,15 @@ function Post({ id, post, postPage, user }) {
           </div>
         </div>
         {postPage && (
-          <p className="text-[15px] sm:text-base mt-0.5">{post?.text}</p>
+          <p className="text-[15px] sm:text-base mt-0.5" onClick={redirectPage}>
+            {post?.text}
+          </p>
         )}
         <img
           src={post?.image}
           alt=""
           className="rounded-2xl max-h-[700px] object-cover mr-2"
+          onClick={redirectPage}
         />
         <div
           className={` text-[#6e767d] flex justify-between w-10/12  ${
