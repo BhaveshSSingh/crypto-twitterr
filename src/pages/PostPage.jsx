@@ -1,27 +1,60 @@
+import {
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { BsArrowLeft, BsThreeDots } from "react-icons/bs";
 import Moment from "react-moment";
+import { db } from "../firebase";
 import { Comment } from "./home/feed/post/Comment";
 import DeleteRetweet from "./home/feed/post/DeleteRetweet";
 import { Like } from "./home/feed/post/Like";
 import Post from "./home/feed/post/Post";
 
-export default function PostPage({ user, id, post, Home, postPage }) {
-  const [posts, setPosts] = useState();
+export default function PostPage({ user, id, Home, postPage, post }) {
+  // const [post, setPost] = useState();
+  const [comments, setComments] = useState([]);
+
+  // useEffect(
+  //   () =>
+  //     onSnapshot(doc(db, "posts", id), (snapshot) => {
+  //       setPost(snapshot.data());
+  //     }),
+  //   [db]
+  // );
+
+  // useEffect(
+  //   () =>
+  //     onSnapshot(
+  //       query(
+  //         collection(db, "posts", id, "comments"),
+  //         orderBy("timestamp", "desc")
+  //       ),
+  //       (snapshot) => setComments(snapshot.docs)
+  //     ),
+  //   [db, id]
+  // );
 
   return (
     <>
       <div className="">
-        <div className="flex items-center px-1.5 py-2 border-b border-gray-700 text-[#d9d9d9] font-semibold text-xl gap-x-4 sticky top-0 z-50 bg-black">
-          <div
-            className="hoverAnimation w-9 h-9 flex items-center justify-center xl:px-0"
-            onClick={Home}
-          >
-            <BsArrowLeft size={22} />
-          </div>
-          Tweet
-        </div>
         {/*  */}
+        <Post user={user} id={id} post={post} postPage />
+        {comments.length > 0 && (
+          <div className="pb-72">
+            {comments.map((comment) => (
+              <Comment
+                key={comment.id}
+                id={comment.id}
+                comment={comment.data()}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
