@@ -1,6 +1,7 @@
 import { BsArrowLeft } from "react-icons/bs";
+import Post from "./post/Post";
 
-function Explore({ Home }) {
+function Explore({ Home, post, id, user }) {
   return (
     <>
       <div className="">
@@ -14,6 +15,10 @@ function Explore({ Home }) {
           Explore
         </div>
       </div>
+      hey
+      {post.map((posts) => {
+        <Post />;
+      })}
     </>
   );
 }

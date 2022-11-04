@@ -4,7 +4,7 @@ import Input from "./Input";
 import "react-toastify/dist/ReactToastify.css";
 import { db, logout } from "../../../firebase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import Post from "./post/Post";
+import Post, { PostCommentPage } from "./post/Post";
 import { Route, Routes } from "react-router-dom";
 import Explore from "./Explore";
 import PostPage from "../../PostPage";
@@ -30,6 +30,7 @@ export default function Feed({ user }) {
     };
   }, [db]);
   console.log(posts);
+  console.log(posts?.text);
   // for the Arrow Icons in pages
   function redirectHome() {
     navigate(`/`);
@@ -60,7 +61,7 @@ export default function Feed({ user }) {
                 </button>
               </div>
               <Input user={user} />
-              <div className="pb-72">
+              <div className="pb-72 ">
                 {posts.map((post) => (
                   <Post
                     key={post.id}
@@ -87,22 +88,50 @@ export default function Feed({ user }) {
                 </div>
                 Tweet
               </div>
-              {posts.map((post) => (
-                <PostPage
-                  key={post.id}
-                  id={post.id}
-                  user={user}
-                  post={post.data()}
-                  postPage
-                  Home={redirectHome}
-                />
-              ))}
-              {/* <Post /> */}
+
+              <PostPage
+                key={posts.id}
+                id={posts.id}
+                user={user}
+                post={posts}
+                postPage
+                Home={redirectHome}
+              />
             </>
           }
         />
 
-        <Route path="/explore" element={<Explore Home={redirectHome} />} />
+        {/* <Route
+          path="/post/:id"
+          element={
+            <>
+              <div className="flex items-center px-1.5 py-2 border-b border-gray-700 text-[#d9d9d9] font-semibold text-xl gap-x-4 sticky top-0 z-50 bg-black">
+                <div
+                  className="hoverAnimation w-9 h-9 flex items-center justify-center xl:px-0"
+                  onClick={redirectHome}
+                >
+                  <BsArrowLeft size={22} />
+                </div>
+                Tweet
+              </div>
+
+              <PostCommentPage />
+            </>
+          }
+        /> */}
+
+        <Route
+          path="/explore"
+          element={
+            <Explore
+              key={posts.id}
+              id={posts.id}
+              user={user}
+              post={posts}
+              Home={redirectHome}
+            />
+          }
+        />
 
         {/* BookMarks */}
 
