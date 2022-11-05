@@ -79,16 +79,6 @@ export default function Feed({ user }) {
           path="/post/:id"
           element={
             <>
-              <div className="flex items-center px-1.5 py-2 border-b border-gray-700 text-[#d9d9d9] font-semibold text-xl gap-x-4 sticky top-0 z-50 bg-black">
-                <div
-                  className="hoverAnimation w-9 h-9 flex items-center justify-center xl:px-0"
-                  onClick={redirectHome}
-                >
-                  <BsArrowLeft size={22} />
-                </div>
-                Tweet
-              </div>
-
               <PostPage
                 key={posts.id}
                 id={posts.id}
@@ -100,25 +90,6 @@ export default function Feed({ user }) {
             </>
           }
         />
-
-        {/* <Route
-          path="/post/:id"
-          element={
-            <>
-              <div className="flex items-center px-1.5 py-2 border-b border-gray-700 text-[#d9d9d9] font-semibold text-xl gap-x-4 sticky top-0 z-50 bg-black">
-                <div
-                  className="hoverAnimation w-9 h-9 flex items-center justify-center xl:px-0"
-                  onClick={redirectHome}
-                >
-                  <BsArrowLeft size={22} />
-                </div>
-                Tweet
-              </div>
-
-              <PostCommentPage />
-            </>
-          }
-        /> */}
 
         <Route
           path="/explore"

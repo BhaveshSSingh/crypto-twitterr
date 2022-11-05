@@ -12,8 +12,8 @@ import PostComments from "./PostComments";
 
 function Post({ id, post, postPage, user }) {
   const navigate = useNavigate();
-  function redirectPage({ id }) {
-    // navigate(`/post/${id}`);
+  function redirectPage({}) {
+    // navigate(`/post/${post.id}`);
   }
 
   // fOR pOST coMMENTS
@@ -36,7 +36,7 @@ function Post({ id, post, postPage, user }) {
       {!postPage && (
         <img
           src={
-            post.userImg
+            post?.userImg
               ? post?.userImg
               : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvBCVC-ISKIyOp_8TIJvtrN0EmZEWF5RxHew&usqp=CAU"
           }
@@ -112,7 +112,7 @@ function Post({ id, post, postPage, user }) {
         </div>
         {/* Comments render here */}
         {comments.length > 0 && (
-          <div className="pb-10">
+          <div className="pb-10 ">
             {comments.map((comment) => (
               <PostComments
                 key={comment.id}

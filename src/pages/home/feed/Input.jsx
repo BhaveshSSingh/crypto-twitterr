@@ -84,6 +84,7 @@ function Input({ user }) {
       <div className="w-full divide-y divide-purple-400">
         <div className={`${selectedImage && "pb-7"} ${input && "space-y-2.5"}`}>
           <textarea
+            autoFocus
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="What's happening?"

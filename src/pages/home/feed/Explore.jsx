@@ -15,10 +15,9 @@ function Explore({ Home, post, id, user }) {
           Explore
         </div>
       </div>
-      hey
-      {post.map((posts) => {
-        <Post />;
-      })}
+      {post.map((post) => (
+        <Post key={post.id} id={post.id} user={user} post={post.data()} />
+      ))}
     </>
   );
 }

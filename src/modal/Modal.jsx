@@ -18,7 +18,7 @@ function Modal({ children, showModal, setShowModal }) {
         onClick={closeModal}
         ref={modalRef}
       >
-        <div className="z-10 absolute top-1/4 left-1/2 -translate-x-2/4 -translate-y-1/4 bg-black rounded-xl w-10/12 h-max p-2 xl:w-[700px]">
+        <div className="z-10 absolute top-1/4 left-1/2 -translate-x-2/4 -translate-y-1/4 bg-black rounded-xl w-10/12 h-max p-2 xl:w-[700px] break-all">
           {children}
         </div>
       </div>

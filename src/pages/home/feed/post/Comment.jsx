@@ -111,6 +111,7 @@ export function Comment({ id, post, postPage, user }) {
               <ProfilePic />
               <div className="flex-grow mt-2">
                 <textarea
+                  autoFocus
                   value={comment}
                   placeholder="Tweet your reply"
                   rows="2"
