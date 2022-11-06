@@ -1,4 +1,3 @@
-import React from "react";
 import { BiSearch } from "react-icons/bi";
 import Trending from "./Trending";
 
@@ -17,10 +16,8 @@ export default function Widgets({}) {
         </div>
       </div>
       <div className="text-[#d9d9d9] space-y-3 bg-[#15181c] pt-2 rounded-xl w-11/12 xl:w-9/12">
-        <h4 className="font-bold text-xl px-4">What's happening</h4>
-        {/* {trendingResults.map((result, index) => (
-          <Trending key={index} result={result} />
-        ))} */}
+        <h4 className="font-bold text-xl px-4 pt-3">What's happening</h4>
+
         <Trending />
         <button className=" bg-transparent hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center justify-between w-full text-purple-500 font-light rounded-b-xl ">
           Show more
@@ -29,9 +26,7 @@ export default function Widgets({}) {
 
       <div className="text-[#d9d9d9] space-y-3 bg-[#15181c] pt-2 rounded-xl w-11/12 xl:w-9/12">
         <h4 className="font-bold text-xl px-4">Who to follow</h4>
-        {/* {trendingResults.map((result, index) => (
-          <Trending key={index} result={result} />
-        ))} */}
+
         <div className=" bg-transparent hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center">
           <img
             src="https://frankzane.com/wp-content/uploads/2016/03/Vac_1-300x300.jpg"
@@ -41,6 +36,34 @@ export default function Widgets({}) {
           <div className="ml-4 leading-5 group">
             <h4 className="font-bold group-hover:underline">Frank Zane</h4>
             <h5 className="text-gray-500 text-[15px]">@frankzane</h5>
+          </div>
+          <button className="ml-auto bg-white  text-black rounded-full font-bold text-sm py-1.5 px-3.5">
+            Follow
+          </button>
+        </div>
+        <div className=" bg-transparent hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center">
+          <img
+            src="https://i0.wp.com/comicstans.com/wp-content/uploads/2021/11/Baki-Hanma.jpeg?fit=585%2C343&ssl=1"
+            className="object-cover  rounded-full w-16 h-16"
+            alt=""
+          />{" "}
+          <div className="ml-4 leading-5 group">
+            <h4 className="font-bold group-hover:underline">Baki Hanma</h4>
+            <h5 className="text-gray-500 text-[15px]">@sonofOgre</h5>
+          </div>
+          <button className="ml-auto bg-white  text-black rounded-full font-bold text-sm py-1.5 px-3.5">
+            Follow
+          </button>
+        </div>
+        <div className=" bg-transparent hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center">
+          <img
+            src="https://image.winudf.com/v2/image/Y29tLmJhbGVmb290Lk1vbmtleURMdWZmeVdhbGxwYXBlcl9zY3JlZW5fMF8xNTI0NTE5MTEwXzAyOA/screen-0.jpg?fakeurl=1&type=.webp"
+            className="object-cover  rounded-full w-16 h-16"
+            alt=""
+          />{" "}
+          <div className="ml-4 leading-5 group">
+            <h4 className="font-bold group-hover:underline">Monkey D Luffy</h4>
+            <h5 className="text-gray-500 text-[15px]">@strawhatguy</h5>
           </div>
           <button className="ml-auto bg-white  text-black rounded-full font-bold text-sm py-1.5 px-3.5">
             Follow
