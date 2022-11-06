@@ -4,12 +4,10 @@ import Input from "./Input";
 import "react-toastify/dist/ReactToastify.css";
 import { db, logout } from "../../../firebase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import Post, { PostCommentPage } from "./post/Post";
+import Post from "./post/Post";
 import { Route, Routes } from "react-router-dom";
-import Explore from "./Explore";
-import PostPage from "../../PostPage";
 import { useNavigate } from "react-router-dom";
-import { BsArrowLeft } from "react-icons/bs";
+import BookMarks from "./BookMarks";
 
 export default function Feed({ user }) {
   const [posts, setPosts] = useState([]);
@@ -76,25 +74,9 @@ export default function Feed({ user }) {
         />
 
         <Route
-          path="/post/:id"
+          path="/bookmarks"
           element={
-            <>
-              <PostPage
-                key={posts.id}
-                id={posts.id}
-                user={user}
-                post={posts}
-                postPage
-                Home={redirectHome}
-              />
-            </>
-          }
-        />
-
-        <Route
-          path="/explore"
-          element={
-            <Explore
+            <BookMarks
               key={posts.id}
               id={posts.id}
               user={user}
@@ -103,14 +85,6 @@ export default function Feed({ user }) {
             />
           }
         />
-
-        {/* BookMarks */}
-
-        {/* <Route path={"bookmarks"} element={<BookMark />} /> */}
-
-        {/* Follow People */}
-
-        {/* <Route path="/follows" element={<Follow/>} /> */}
       </Routes>
     </div>
   );

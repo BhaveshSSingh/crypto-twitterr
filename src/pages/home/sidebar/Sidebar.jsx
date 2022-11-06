@@ -1,8 +1,7 @@
 import React from "react";
 import SidebarIcons from "./SidebarIcons";
-import { BiHash, BiUser, BiLogOut } from "react-icons/bi";
+import { BiUser, BiLogOut } from "react-icons/bi";
 import { BsBookmarkPlus } from "react-icons/bs";
-import { GiQuill } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
 import logo from "../../../assets/logo.svg";
@@ -24,18 +23,13 @@ export default function Sidebar({ user }) {
         <Link to="/">
           <SidebarIcons text="Home" Icon={AiFillHome} active />
         </Link>
-        <Link to="/explore" onClick={navigateExplore}>
-          <SidebarIcons text="Explore" Icon={BiHash} />
-        </Link>
         <Link to="/bookmarks">
-          {" "}
           <SidebarIcons text="Bookmarks" Icon={BsBookmarkPlus} />
         </Link>
-        <Link to="people">
+        <Link to="">
           {" "}
-          <SidebarIcons text="Find People" Icon={BiUser} />
+          <SidebarIcons text="Profile" Icon={BiUser} />
         </Link>
-
         <a
           className="text-purple-500"
           href="https://discord-clone-baa20.firebaseapp.com/"

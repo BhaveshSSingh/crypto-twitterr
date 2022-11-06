@@ -8,6 +8,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "../../../../firebase";
+import { toast } from "react-toastify";
 
 export function Like({ id, user }) {
   const [liked, setLiked] = useState(false);
@@ -34,6 +35,7 @@ export function Like({ id, user }) {
       await setDoc(doc(db, "posts", id, "likes", user.uid), {
         username: user.displayName,
       });
+      toast("Liked ❤️");
     }
   };
   return (

@@ -1,7 +1,7 @@
 import { BsArrowLeft } from "react-icons/bs";
 import Post from "./post/Post";
 
-function Explore({ Home, post, id, user }) {
+function BookMarks({ Home, post, id, user }) {
   return (
     <>
       <div className="">
@@ -12,7 +12,7 @@ function Explore({ Home, post, id, user }) {
           >
             <BsArrowLeft size={22} />
           </div>
-          Explore
+          Bookmarks
         </div>
       </div>
       {post.map((post) => (
@@ -22,4 +22,4 @@ function Explore({ Home, post, id, user }) {
   );
 }
 
-export default Explore;
+export default BookMarks;

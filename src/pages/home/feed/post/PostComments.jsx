@@ -6,6 +6,7 @@ import { db } from "../../../../firebase";
 import { BsPencil } from "react-icons/bs";
 import Modal from "../../../../modal/Modal";
 import { MdClose } from "react-icons/md";
+import { toast } from "react-toastify";
 
 export default function PostComments({
   comment,
@@ -24,12 +25,15 @@ export default function PostComments({
     await updateDoc(doc(db, "posts", postID, "comments", commentID), {
       comment: editComment,
     });
+    toast("Comment Edited 💬");
     setShowModal(false);
   }
   // Delete comment
   const deleteComment = () => {
     console.log("delete clicked");
     deleteDoc(doc(db, "posts", postID, "comments", commentID));
+    toast(`Comment Deleted 🗑️`);
+    setShowModal(false);
   };
   // console.log("user " + user.displayName);
   // console.log("commenter " + comment.username);
@@ -61,7 +65,7 @@ export default function PostComments({
           </div>
 
           <div className="flex">
-            {user.displayName === comment.username ? (
+            {user.displayName === comment.username && (
               <>
                 <div
                   className="icon group-hover:bg-red-500 group-hover:bg-opacity-10 "
@@ -80,37 +84,37 @@ export default function PostComments({
                   />
                 </div>
               </>
-            ) : (
-              ""
             )}
           </div>
         </div>
       </div>
       <Modal showModal={showModal} setShowModal={setShowModal}>
-        <div className="p-2">
+        <div className="p-2 ">
           <div className="flex justify-between	 items-center border-b border-gray-700">
-            Edit Todo
+            Edit Comment
             <div className="icon group">
               <MdClose size={28} onClick={() => setShowModal(false)} />
             </div>
           </div>
-          <div className="pt-4">
-            <input
-              className="bg-transparent outline-none text-lg 
+          <div className="pt-4 flex justify-between">
+            <div className="pt-4">
+              <input
+                className="bg-transparent outline-none text-lg 
              placeholder-gray-500 w-full"
-              type="text"
-              autoFocus
-              value={editComment}
-              onChange={(e) => setEditComment(e.target.value)}
-            />
+                type="text"
+                autoFocus
+                value={editComment}
+                onChange={(e) => setEditComment(e.target.value)}
+              />
+            </div>
+            <button
+              className="cursor-pointer   bg-[#7856ff] text-white rounded-full px-3 py-1 font-normal shadow-md hover:bg-[#ab97fb] disabled:hover:bg-[#7856ff] disabled:opacity-50 disabled:cursor-default "
+              disabled={!editComment.trim()}
+              onClick={updateComments}
+            >
+              Comment
+            </button>
           </div>
-          <button
-            className="cursor-pointer   bg-[#7856ff] text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-[#ab97fb] disabled:hover:bg-[#7856ff] disabled:opacity-50 disabled:cursor-default "
-            disabled={!editComment.trim()}
-            onClick={updateComments}
-          >
-            Comment
-          </button>
         </div>
       </Modal>
     </div>

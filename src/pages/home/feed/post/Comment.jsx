@@ -13,6 +13,7 @@ import Modal from "../../../../modal/Modal";
 import { MdClose } from "react-icons/md";
 import { AiOutlineComment } from "react-icons/ai";
 import Moment from "react-moment";
+import { toast } from "react-toastify";
 
 export function Comment({ id, post, postPage, user }) {
   const [showModal, setShowModal] = useState(false);
@@ -43,6 +44,8 @@ export function Comment({ id, post, postPage, user }) {
       userImg: user.photoURL,
       timestamp: serverTimestamp(),
     });
+    toast("Comment sent 💬");
+
     setShowModal(false);
     setComment("");
   }

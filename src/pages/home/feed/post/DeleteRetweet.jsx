@@ -2,11 +2,13 @@ import React from "react";
 import { AiOutlineRetweet, AiOutlineDelete } from "react-icons/ai";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../../../firebase";
+import { toast } from "react-toastify";
 export default function DeleteRetweet({ id, user, post }) {
   // Delete your own posts (Delete btn)
   const deleteHandler = () => {
     console.log("delete clicked");
     deleteDoc(doc(db, "posts", id));
+    toast(`Post Deleted 🗑️`);
   };
   // Copy to clipboard (RwTweet btn)
   const copyToClipboard = async () => {
@@ -17,7 +19,7 @@ export default function DeleteRetweet({ id, user, post }) {
     } catch (e) {
       console.error("e", e);
     }
-    alert("Copied to Clipboard");
+    toast(" Link Copied 🔗");
   };
   return (
     <div>

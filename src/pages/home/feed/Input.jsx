@@ -13,6 +13,7 @@ import {
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import { db, storage } from "../../../firebase";
 import ProfilePic from "../../../constants";
+import { toast } from "react-toastify";
 
 function Input({ user }) {
   const [input, setInput] = useState("");
@@ -44,6 +45,7 @@ function Input({ user }) {
         });
       });
     }
+    toast.success(`Tweet Posted🐦`);
 
     // Reset the states
     setLoading(false);
@@ -143,7 +145,6 @@ function Input({ user }) {
                 Tweet
               </button>
             </div>
-            {/* <ToastContainer /> */}
           </>
         )}
       </div>

@@ -45,7 +45,7 @@ export default function Trending() {
           </p>
           <h6 className="font-bold max-w-[250px] text-sm">December 16</h6>
           <p>
-            Trending with <span className="tag">#AliaBhatt, #babygirl</span>
+            Trending with <span className="tag">#AliaBhatt</span>
           </p>
         </div>
         <div></div>

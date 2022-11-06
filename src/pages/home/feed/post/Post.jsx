@@ -1,9 +1,9 @@
+import { EditPost } from "../EditPost";
 import { Like } from "./Like";
-import { BsThreeDots } from "react-icons/bs";
+import { BsThreeDots, BsBookmarkFill, BsBookmark } from "react-icons/bs";
 import Moment from "react-moment";
 import DeleteRetweet from "./DeleteRetweet";
 import { Comment } from "./Comment";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../../../../firebase";
@@ -11,11 +11,6 @@ import { db } from "../../../../firebase";
 import PostComments from "./PostComments";
 
 function Post({ id, post, postPage, user }) {
-  const navigate = useNavigate();
-  function redirectPage({}) {
-    // navigate(`/post/${post.id}`);
-  }
-
   // fOR pOST coMMENTS
   const [comments, setComments] = useState([]);
 
@@ -45,10 +40,7 @@ function Post({ id, post, postPage, user }) {
         />
       )}
       <div className="flex flex-col space-y-2 w-full">
-        <div
-          className={`flex ${!postPage && "justify-between"}`}
-          onClick={redirectPage}
-        >
+        <div className={`flex ${!postPage && "justify-between"}`}>
           {postPage && (
             <img
               src={post?.userImg}
@@ -81,20 +73,15 @@ function Post({ id, post, postPage, user }) {
               </p>
             )}
           </div>
-          <div className="icon group flex-shrink-0 ml-auto hover:text-purple-500">
-            <BsThreeDots />
-          </div>
+          <EditPost user={user} post={post} id={id} />
         </div>
         {postPage && (
-          <p className="text-[15px] sm:text-base mt-0.5" onClick={redirectPage}>
-            {post?.text}
-          </p>
+          <p className="text-[15px] sm:text-base mt-0.5">{post?.text}</p>
         )}
         <img
           src={post?.image}
           alt=""
           className="rounded-2xl max-h-[700px] object-cover mr-2"
-          onClick={redirectPage}
         />
         <div
           className={` text-[#6e767d] flex justify-between w-10/12  ${
@@ -103,12 +90,20 @@ function Post({ id, post, postPage, user }) {
         >
           {/* Like  */}
           {<Like id={id} user={user} />}
-
           {/* Comment */}
           <Comment id={id} post={post} postPage={postPage} user={user} />
-
           {/* Delete */}
           <DeleteRetweet id={id} user={user} post={post} />
+          {/* BookMark */}
+          {/* <div>
+            <div className="icon group-hover:bg-green-600 group-hover:bg-opacity-10 ">
+              {bookmarked ? (
+              <BsBookmark size={18} className="hover:text-green-500" />
+              ) : (
+              <BsBookmarkFill size={18} className="text-green-500" />
+              )}
+            </div>
+          </div> */}
         </div>
         {/* Comments render here */}
         {comments.length > 0 && (
